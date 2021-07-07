@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsy.mapper.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.xsy.domain.Article">
+
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="abs" jdbcType="VARCHAR" property="abs" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="looknum" jdbcType="INTEGER" property="looknum" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xsy.domain.Article">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <collection property="typeList" ofType="com.xsy.domain.Type" select="queryAllwithID" column="id"></collection>
+    <collection property="commentList" ofType="com.xsy.domain.Comment" select="queryComment" column="id"></collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+
+    id, title, abs, img, create_date, u_id, looknum
+  </sql>
+  <sql id="Blob_Column_List">
+
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+    delete from article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xsy.domain.Article" useGeneratedKeys="true" keyProperty="id">
+    insert into article (id, title, abs,
+      img, create_date, u_id, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{abs,jdbcType=VARCHAR},
+      #{img,jdbcType=VARCHAR}, #{createDate,jdbcType=VARCHAR}, #{uId,jdbcType=INTEGER},
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xsy.domain.Article">
+
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="abs != null">
+        abs,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="abs != null">
+        #{abs,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xsy.domain.Article">
+
+    update article
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="abs != null">
+        abs = #{abs,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xsy.domain.Article">
+
+    update article
+    set title = #{title,jdbcType=VARCHAR},
+      abs = #{abs,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      u_id = #{uId,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xsy.domain.Article">
+
+    update article
+    set title = #{title,jdbcType=VARCHAR},
+      abs = #{abs,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      u_id = #{uId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="queryAll" resultMap="ResultMapWithBLOBs">
+
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article
+  </select>
+
+  <select id="queryAllwithID" resultType="com.xsy.domain.Type">
+    select * from  type t,art_type ae WHERE ae.tid=t.tid AND  ae.aid=#{id}
+  </select>
+
+  <select id="queryComment" resultType="com.xsy.domain.Comment">
+    select * from comment where aid=#{id}
+
+  </select>
+  
+  <insert id="addArtType" parameterType="int">
+
+        insert into art_type(aid,tid)  values (#{aid},#{tid})
+  </insert>
+
+  <update id="addCount" parameterType="int">
+        update article set looknum =looknum +1 where id=#{id}
+
+  </update>
+  <select id="getRecommend" resultMap="ResultMapWithBLOBs">
+
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article order by looknum desc limit 0,10
+  </select>
+</mapper>
