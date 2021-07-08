@@ -7,6 +7,7 @@ import com.xsy.domain.Article;
 import com.xsy.domain.User;
 import com.xsy.mapper.ArticleMapper;
 import com.xsy.mapper.UserMapper;
+import com.xsy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,24 +19,15 @@ import java.util.Properties;
 public class UserController {
 
     @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private ArticleMapper  articleMapper;
-
-    @Autowired
-    private PageHelper pageHelper;
-
-    @RequestMapping("/user")
-    public PageInfo<Article> getUser(@RequestBody User user){
+    private UserService userService;
 
 
-        System.out.println(user.getId());
+    @RequestMapping("/getUser")
+    public User getUser(@RequestBody User user){
 
-
-        PageInfo<Article> page=new PageInfo<>();
-
-        return  page;
+        return userService.getUser(user.getId());
     }
+
 
 
 }

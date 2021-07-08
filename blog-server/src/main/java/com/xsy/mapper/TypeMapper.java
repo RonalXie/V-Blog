@@ -26,4 +26,8 @@ public interface TypeMapper {
 
     int updateByPrimaryKey(Type record);
     List<Type> getType();
+
+    int typeSum();
+
+    int deleteArtType(int tid);
 }

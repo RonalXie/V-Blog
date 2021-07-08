@@ -67,4 +67,13 @@
   <select id="getType" resultType="com.xsy.domain.Type">
     select * from type
   </select>
+
+  <select id="typeSum" resultType="int">
+        select count(*) from type
+  </select>
+
+
+  <delete id="deleteArtType" parameterType="int">
+    delete from art_type where tid=#{tid}
+  </delete>
 </mapper>

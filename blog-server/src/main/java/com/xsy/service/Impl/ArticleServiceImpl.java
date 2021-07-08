@@ -100,5 +100,38 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.getRecommend();
     }
 
+    @Override
+    public int deleteArtType(int id) {
+        return articleMapper.deleteArtType(id);
+    }
+
+    @Override
+    public void updateArticle(Article article) {
+        int type[]=article.getType();
+        int aid=article.getId();
+        articleMapper.updateByPrimaryKey(article);
+        articleMapper.deleteArtType(aid);
+
+        for (int tid: type) {
+            articleMapper.addArtType(aid,tid);
+        }
+    }
+
+    @Override
+    public void deleteArticle(int id) {
+        articleMapper.deleteByPrimaryKey(id);
+        articleMapper.deleteArtType(id);
+    }
+
+    @Override
+    public int lookSum() {
+        return articleMapper.lookSum();
+    }
+
+    @Override
+    public int articleSum() {
+        return articleMapper.articleSum();
+    }
+
 
 }

@@ -6,6 +6,8 @@ import Type from "../views/Type";
 import addArticle from "../views/Article/addArticle";
 import allArticle from "../views/Article/allArticle";
 import allComment from "../views/Comment/allComment";
+import EditArticle from "../views/Article/EditArticle";
+import AllType from "../views/Type/AllType";
 
 
 Vue.use(Router)
@@ -34,6 +36,13 @@ export default new Router({
           name: '写文章',
           component: addArticle,
         },
+        {
+          path: '/editArticle/:id',
+          name: '编辑',
+          component: EditArticle,
+          hidden:true,
+
+        },
       ]
     },
 
@@ -43,9 +52,9 @@ export default new Router({
       component: Home,
       children:[
         {
-          path: '/addType',
-          name: '添加分类',
-          component: addArticle,
+          path: '/AllType',
+          name: '全部分类',
+          component: AllType,
         },
       ]
     },

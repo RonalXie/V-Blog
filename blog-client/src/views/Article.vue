@@ -44,7 +44,7 @@
                           <el-input type="textarea" v-model="form.comment" ></el-input>
                         </el-form-item>
                         <el-form-item>
-                          <el-button type="primary" @click="onSubmit">确定</el-button>
+                          <el-button type="primary" @click="postComment">确定</el-button>
                           <el-button>取消</el-button>
                         </el-form-item>
                       </el-form>
@@ -120,10 +120,10 @@ export default {
   data(){
 
     return{
-
       form:{
         username:"",
         comment:"",
+        aId:""
 
       },
       tableData:[],
@@ -132,9 +132,21 @@ export default {
         id:this.$route.params.id
       },
 
+
+
     }
   },
   methods:{
+
+    postComment(){
+
+      this.form.aId=this.content.id;
+
+      postRequest("/addComment",this.form).then(function (response){
+          location.reload()
+      })
+
+    },
 
     goArticle(item){
       this.$router.push("/article/"+item.id)

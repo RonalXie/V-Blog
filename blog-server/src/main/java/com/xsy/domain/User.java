@@ -6,6 +6,16 @@ public class User {
     private String username;
     private String password;
     private String avatar;
+    private String introduction;
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
     public Integer getId() {
         return id;
     }

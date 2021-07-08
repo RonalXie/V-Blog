@@ -18,4 +18,11 @@ public interface ArticleService {
     public void addCount(int id);
 
     public List<Article> getRecommend();
+    public int deleteArtType(int id);
+    public void updateArticle(Article article);
+    public void deleteArticle(int id);
+
+    public int lookSum();
+
+    int articleSum();
 }

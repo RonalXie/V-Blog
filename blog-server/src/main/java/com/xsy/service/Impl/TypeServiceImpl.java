@@ -19,4 +19,25 @@ public class TypeServiceImpl implements TypeService {
     public List<Type> getType() {
         return typeMapper.getType();
     }
+
+    @Override
+    public int typeSum() {
+        return typeMapper.typeSum();
+    }
+
+    @Override
+    public void updateType(Type type) {
+        typeMapper.updateByPrimaryKey(type);
+    }
+
+    @Override
+    public void deleteType(Type type) {
+        typeMapper.deleteByPrimaryKey(type.getTid());
+        typeMapper.deleteArtType(type.getTid());
+    }
+
+    @Override
+    public int addType(Type type) {
+        return typeMapper.insert(type);
+    }
 }

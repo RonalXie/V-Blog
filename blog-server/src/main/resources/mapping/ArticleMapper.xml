@@ -40,11 +40,11 @@
   </delete>
   <insert id="insert" parameterType="com.xsy.domain.Article" useGeneratedKeys="true" keyProperty="id">
     insert into article (id, title, abs,
-      img, create_date, u_id, 
+      img, create_date, u_id, looknum,
       content)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{abs,jdbcType=VARCHAR},
       #{img,jdbcType=VARCHAR}, #{createDate,jdbcType=VARCHAR}, #{uId,jdbcType=INTEGER},
-      #{content,jdbcType=LONGVARCHAR})
+      #{looknum,jdbcType=INTEGER},#{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xsy.domain.Article">
 
@@ -137,8 +137,8 @@
     update article
     set title = #{title,jdbcType=VARCHAR},
       abs = #{abs,jdbcType=VARCHAR},
+      content=#{content,jdbcType=VARCHAR},
       img = #{img,jdbcType=VARCHAR},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
       u_id = #{uId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -178,4 +178,19 @@
     <include refid="Blob_Column_List" />
     from article order by looknum desc limit 0,10
   </select>
+
+  <delete id="deleteArtType" parameterType="int">
+    delete from art_type where aid=#{id}
+  </delete>
+  <select id="lookSum" resultType="int">
+
+    select sum(looknum) from article
+  </select>
+
+  <select id="articleSum" resultType="int">
+    select count(*) from article
+  </select>
+
+
+
 </mapper>

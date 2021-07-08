@@ -26,7 +26,13 @@ public interface ArticleMapper {
 
     int addArtType(int aid,int tid);
 
+    int lookSum();
+
     int addCount(int id);
 
     List<Article> getRecommend();
+
+    int deleteArtType(int id);
+
+    int articleSum();
 }

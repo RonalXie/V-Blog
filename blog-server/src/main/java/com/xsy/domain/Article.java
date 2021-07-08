@@ -79,8 +79,8 @@ public class Article {
     public String getCreateDate() {
         return createDate;
     }
-    public void setCreateDate(Date createDate) {
-        this.createDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(createDate);
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
     public Integer getuId() {
         return uId;

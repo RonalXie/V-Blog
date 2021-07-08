@@ -20,7 +20,7 @@
         <el-form-item label="选择分类" :label-width="formLabelWidth">
           <el-select v-model="form.type" multiple placeholder="请选择">
             <el-option
-              v-for="item in options"
+              v-for="item in form.typeList"
               :key="item.tid"
               :label="item.name"
               :value="item.tid">
@@ -89,15 +89,14 @@ export default {
       dialog: false,
       loading: false,
       imgurl:'',
-      type: [],
       form: {
         title: '',
         abs:'',
         img:'',
         content:'',
+        typeList: [],
         type:[]
       },
-      options: [],
       value1: [],
       value2: [],
       formLabelWidth: '80px',
@@ -133,7 +132,7 @@ export default {
     initType(){
       var _this=this;
       getRequest('/getType').then(function (response) {
-          _this.options=response.data;
+          _this.form.typeList=response.data;
       })
 
 
@@ -153,7 +152,7 @@ export default {
         enable: false,
       },
       after: () => {
-        this.contentEditor.setValue('hello, Vditor + Vue!')
+        this.contentEditor.setValue(this.form.content)
       },
 
     })

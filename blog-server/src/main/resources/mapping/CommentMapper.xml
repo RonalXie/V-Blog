@@ -40,9 +40,9 @@
   </delete>
   <insert id="insert" parameterType="com.xsy.domain.Comment">
 
-    insert into comment (id, username, date, 
-      a_id, comment)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, 
+    insert into comment (cid, username, date,
+      aid, comment)
+    values (#{cid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR},
       #{aId,jdbcType=INTEGER}, #{comment,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xsy.domain.Comment">

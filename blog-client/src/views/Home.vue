@@ -9,15 +9,16 @@
             <div class="block">
               <br>
 
-              <el-avatar :size="100" :src="avaterimg"></el-avatar>
+              <el-avatar :size="100" :src="this.user.avatar"></el-avatar>
 
-              <h1>西罗</h1>
+              <h1>{{ this.user.username }}</h1>
 
-              <span>一个技术爱好者</span><br><br>
+              <span>{{this.user.introduction}}</span><br><br>
 
-              <div style="padding: 0 20px 0 20px">
-                <span style="display: inline-block;float: left">文章 10</span>
-                <span style="display: inline-block;float: right">分类 10</span>
+              <div style="padding: 0 5px 0 5px;text-align: center">
+                <span style="display: inline-block;margin-right: 30px">文章 {{ this.articlesum }}</span>
+                <span style="display: inline-block;margin-right: 30px">分类 {{this.typesum}}</span>
+                <span style="display: inline-block;">访问 {{this.looksum}}</span>
               </div>
 
             </div>
@@ -107,6 +108,14 @@ export default {
   },
   data(){
     return{
+      user:{
+        username:'',
+        introduction:'',
+        avatar:''
+      },
+      looksum:"",
+      typesum:"",
+      articlesum:"",
       avaterimg:'https://www.xiesiyu.top/upload/2021/04/1000-340286eb49d94ffc98449972f7bb7b84-ea2bc3481be2429f93df0a11424b4632.jpg',
       url:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
       contentEditor:"",
@@ -172,6 +181,10 @@ export default {
     this.getTypes()
     this.openMessage()
     this.getHot()
+    getRequest("/lookSum").then(response=>(this.looksum=response.data));
+    getRequest("/articleSum").then(response=>(this.articlesum=response.data));
+    getRequest("/typeSum").then(response=>(this.typesum=response.data));
+    postRequest("/getUser",{"id":1}).then(response=>(this.user=response.data));
 
 
 

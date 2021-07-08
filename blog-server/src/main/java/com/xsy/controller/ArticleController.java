@@ -51,8 +51,8 @@ public class ArticleController {
 
     @RequestMapping("/addArticle")
     public String addArticle(@RequestBody Article article){
-
-        article.setCreateDate(new Date());
+        String date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        article.setCreateDate(date);
         article.setLooknum(0);
         articleService.addArticle(article);
         return "200";
@@ -71,6 +71,28 @@ public class ArticleController {
 
     }
 
+    @RequestMapping("/updateArticle")
+    public String updateArticle(@RequestBody Article article){
+        articleService.updateArticle(article);
+        return "200";
 
+    }
+
+    @RequestMapping("/deleteArticle")
+    public String deleteArticle(@RequestBody Article article){
+        int id=article.getId();
+        articleService.deleteArticle(id);
+        return "200";
+    }
+
+    @RequestMapping("/lookSum")
+    public int lookSum(){
+        return articleService.lookSum();
+    }
+
+    @RequestMapping("/articleSum")
+    public int articleSum(){
+        return articleService.articleSum();
+    }
 
 }
