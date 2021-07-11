@@ -24,9 +24,17 @@ public class UserController {
 
     @RequestMapping("/getUser")
     public User getUser(@RequestBody User user){
-
-        return userService.getUser(user.getId());
+        user=userService.getUser(user.getId());
+        user.setPassword(null);
+        return user;
     }
+
+    @RequestMapping("/login")
+    public User login(@RequestBody User user){
+        System.out.println(user.getUsername());
+        return userService.login(user);
+    }
+
 
 
 

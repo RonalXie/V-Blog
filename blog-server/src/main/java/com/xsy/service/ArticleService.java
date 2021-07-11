@@ -25,4 +25,9 @@ public interface ArticleService {
     public int lookSum();
 
     int articleSum();
+    List<Article> selectRecent();
+
+    public List<Article> queryTop();
+
+    void updateTop(Article article);
 }

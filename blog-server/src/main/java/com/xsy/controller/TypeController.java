@@ -1,6 +1,11 @@
 package com.xsy.controller;
 
 
+
+import com.github.pagehelper.PageInfo;
+import com.xsy.domain.Article;
+
+import com.xsy.domain.Page;
 import com.xsy.domain.Type;
 import com.xsy.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +52,17 @@ public class TypeController {
     public int addType(@RequestBody Type type){
 
         return typeService.addType(type);
+    }
+
+//    @RequestMapping("/getArticleByTid")
+//    public Type getArticleByTid(@RequestBody Type type){
+//        System.out.println(type.getTid());
+//        return typeService.getArticleByTid(type.getTid());
+//    }
+
+    @RequestMapping("/getArticleByTid")
+    public PageInfo<Article> getArticleByTid(@RequestBody Page page){
+        return typeService.queryByType(page,page.getTid());
     }
 
 

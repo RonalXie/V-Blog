@@ -16,9 +16,8 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 
     select
-    username,
-    introduction,
-    avatar
+
+    *
 
     from user
     where id = #{id,jdbcType=INTEGER}
@@ -91,4 +90,8 @@
       avatar = #{avatar,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByUsernamePassword" resultType="com.xsy.domain.User" parameterType="com.xsy.domain.User">
+    select * from user where username=#{username} and password=#{password}
+  </select>
 </mapper>

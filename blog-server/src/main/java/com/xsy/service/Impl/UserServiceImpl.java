@@ -18,4 +18,10 @@ public class UserServiceImpl implements UserService {
     public User getUser(int id) {
         return userMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public User login(User user) {
+        System.out.println(userMapper.selectByUsernamePassword(user).getUsername());
+        return userMapper.selectByUsernamePassword(user);
+    }
 }

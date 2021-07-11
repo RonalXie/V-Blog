@@ -89,9 +89,9 @@
 
         <h3 style="color:#909090; text-align: center">最近发表</h3>
         <div class="recent_art">
-          <div style="margin-left: 10px" v-for="(v,index) in 10">
+          <div class="per_type" v-for="(item,index) in this.recent" @click="queryOne({'id':item.id})">
             <el-badge :value="index+1" class="item"></el-badge>
-            这是文章标题
+            {{ item.title }}
 
             <br>
             <br>
@@ -120,6 +120,7 @@ export default {
   data(){
 
     return{
+      recent:'',
       form:{
         username:"",
         comment:"",
@@ -200,6 +201,7 @@ export default {
     this.addCount()
     console.log(this.content)
     this.getHot()
+    getRequest("/selectRecent").then(response=>(this.recent=response.data))
 
 
   },
@@ -238,6 +240,9 @@ export default {
 
   margin-left: 10px;
   cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
 
 
@@ -282,6 +287,10 @@ export default {
 }
 .recent_art{
   padding-top: 20px;
+  width: 320px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
 }
 .comment{

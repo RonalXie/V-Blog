@@ -1,5 +1,10 @@
 package com.xsy.service.Impl;
 
+import com.xsy.domain.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.xsy.domain.Article;
+
 import com.xsy.domain.Type;
 import com.xsy.mapper.TypeMapper;
 import com.xsy.service.TypeService;
@@ -15,6 +20,9 @@ public class TypeServiceImpl implements TypeService {
 
     @Autowired
     private TypeMapper typeMapper;
+
+    @Autowired
+    private PageHelper pageHelper;
     @Override
     public List<Type> getType() {
         return typeMapper.getType();
@@ -39,5 +47,19 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public int addType(Type type) {
         return typeMapper.insert(type);
+    }
+
+    @Override
+    public Type getArticleByTid(int tid) {
+        return null;
+    }
+
+
+    public PageInfo<Article> queryByType(Page page, int tid) {
+        pageHelper.startPage(page.getPageNum(),page.getPageSize(),"id desc");
+        List<Article> list=typeMapper.queryByType(tid);
+
+        PageInfo<Article> article=new PageInfo<>(list);
+        return article;
     }
 }

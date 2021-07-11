@@ -4,6 +4,8 @@ import Index from '../components/Index'
 import Home from "../views/Home";
 import Article from "../views/Article";
 import About from "../views/About";
+import QueryByType from "../views/QueryByType";
+import Message from "../views/Message";
 
 Vue.use(Router)
 
@@ -31,6 +33,18 @@ export default new Router({
           name:"About",
           component:About,
         },
+        {
+          path:"/byType/:tid",
+          name:"byType",
+          component:QueryByType
+
+        },
+        {
+          path:"/message",
+          name:"Message",
+          component:Message,
+
+        }
 
       ]
     },

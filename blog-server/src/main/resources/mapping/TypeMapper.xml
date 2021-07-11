@@ -3,13 +3,18 @@
 <mapper namespace="com.xsy.mapper.TypeMapper">
   <resultMap id="BaseResultMap" type="com.xsy.domain.Type">
 
-    <id column="tid" jdbcType="INTEGER" property="id" />
+    <id column="tid" jdbcType="INTEGER" property="tid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <collection property="articleList" column="tid" ofType="com.xsy.domain.Article" select="queryByType"></collection>
   </resultMap>
   <sql id="Base_Column_List">
 
     tid, name
   </sql>
+  <select id="queryByType" parameterType="int" resultType="com.xsy.domain.Article">
+    SELECT id,title,abs,content,img,create_date as createDate,looknum from article WHERE id in (SELECT aid from art_type at,type t WHERE at.tid=t.tid and t.tid=#{tid})
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
 
     select 
@@ -66,6 +71,10 @@
 
   <select id="getType" resultType="com.xsy.domain.Type">
     select * from type
+  </select>
+
+  <select id="getArticleByTid" parameterType="int" resultMap="BaseResultMap">
+    select * from type where tid=#{tid};
   </select>
 
   <select id="typeSum" resultType="int">

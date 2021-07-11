@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -26,6 +27,19 @@ public class CommentController {
         comment.setDate(date);
         System.out.println(comment.getaId());
         commentService.insert(comment);
+    }
+
+    @RequestMapping("/getComment")
+    public List<Comment> getComment(){
+        return commentService.getComment();
+
+    }
+
+    @RequestMapping("/deleteComment")
+    public String deleteComment(@RequestBody Comment comment){
+        commentService.deleteComment(comment.getCid());
+        return "200";
+
     }
 
 }

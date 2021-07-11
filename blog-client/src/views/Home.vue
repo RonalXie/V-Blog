@@ -36,7 +36,7 @@
           <h3 style="color:#909090; text-align: center">标签墙</h3>
           <div class="tags">
 
-            <el-tag type="warning" v-for="(item,index) in types" :key="index">{{ item.name }}</el-tag>
+            <el-tag style="cursor: pointer" type="warning" v-for="(item,index) in types" :key="index" @click="queryBytype(item.tid)">{{ item.name }}</el-tag>
 
 
 
@@ -63,7 +63,7 @@
                   </span>
 
 
-                  <h3>{{item.title}}</h3>
+                  <h3 style="  overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{item.title}}</h3>
 
                   <span>{{item.abs}}</span>
 
@@ -124,18 +124,25 @@ export default {
       currentPage:1,
       page:"",
       fullscreenLoading:false,
-      types:[]
+      types:[],
+      top:[]
 
     }
   },
   methods:{
 
+    queryBytype(tid){
+
+      this.$router.push("/byType/"+tid)
+
+    },
+
     openMessage() {
       const h = this.$createElement;
 
       this.$notify({
-        title: '标题名称',
-        message: h('i', { style: 'color: teal'}, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案'),
+        title: '欢迎访问',
+        message: h('i', { style: 'color: teal'}, '欢迎来到小站，这是一个记录学习的地方'),
         position: 'top-right'
       });
     },
@@ -185,6 +192,7 @@ export default {
     getRequest("/articleSum").then(response=>(this.articlesum=response.data));
     getRequest("/typeSum").then(response=>(this.typesum=response.data));
     postRequest("/getUser",{"id":1}).then(response=>(this.user=response.data));
+
 
 
 
@@ -283,6 +291,9 @@ export default {
 
   margin-left: 10px;
   cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
 
 

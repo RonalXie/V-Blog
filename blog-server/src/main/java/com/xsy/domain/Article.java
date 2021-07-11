@@ -13,6 +13,16 @@ public class Article {
     private Integer uId;
     private String content;
     private Integer looknum;
+    private boolean istop;
+
+    public boolean getIstop() {
+        return istop;
+    }
+
+    public void setIstop(boolean istop) {
+        this.istop = istop;
+    }
+
     private List<Type> typeList;
     private List<Comment> commentList;
 

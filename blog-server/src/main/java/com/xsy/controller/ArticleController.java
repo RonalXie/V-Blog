@@ -95,4 +95,25 @@ public class ArticleController {
         return articleService.articleSum();
     }
 
+    @RequestMapping("/selectRecent")
+    public List<Article> selectRecent(){
+        return articleService.selectRecent();
+    }
+
+
+    @RequestMapping("/queryTop")
+    public List<Article> queryTop(){
+        return articleService.queryTop();
+
+    }
+
+    @RequestMapping("/updateTop")
+    public void updateTop(@RequestBody Article article){
+        System.out.println(article.getIstop());
+        articleService.updateTop(article);
+
+    }
+
+
+
 }

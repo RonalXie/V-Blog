@@ -7,6 +7,16 @@ public class Comment {
     private String date;
     private Integer aId;
     private String comment;
+    private Article article;
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
     public Integer getCid() {
         return cid;
     }
@@ -37,4 +47,5 @@ public class Comment {
     public void setComment(String comment) {
         this.comment = comment == null ? null : comment.trim();
     }
+
 }

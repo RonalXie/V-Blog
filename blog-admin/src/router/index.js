@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from "../views/Home";
-import Article from "../views/Article";
-import Type from "../views/Type";
 import addArticle from "../views/Article/addArticle";
 import allArticle from "../views/Article/allArticle";
 import allComment from "../views/Comment/allComment";
 import EditArticle from "../views/Article/EditArticle";
 import AllType from "../views/Type/AllType";
+import Login from "../views/Login";
+import Music from "../views/Others/Music";
+import Swiper from "../views/Others/Swiper";
+import User from "../views/Others/User";
 
 
 Vue.use(Router)
@@ -16,13 +18,13 @@ export default new Router({
   routes: [
 
     {
-      path: '/login',
+      path: '/',
       name: 'Login',
-      component: Article,
+      component: Login,
       hidden:true,
     },
     {
-      path: '/',
+      path: '/home',
       name: '文章管理',
       component: Home,
       children:[
@@ -78,15 +80,21 @@ export default new Router({
       component: Home,
       children:[
         {
-          path: '/addType',
-          name: '音乐',
-          component: addArticle,
+          path: '/user',
+          name: '个人信息',
+          component: User,
         },
         {
-          path: '/addType',
-          name: '轮播图',
-          component: addArticle,
+          path: '/music',
+          name: '音乐',
+          component: Music,
         },
+        {
+          path: '/swiper',
+          name: '轮播图',
+          component: Swiper,
+        },
+
       ]
     },
 

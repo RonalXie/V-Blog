@@ -4,7 +4,7 @@
       <el-menu router :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#E9F3FA"  @select="handleSelect">
         <el-menu-item style="float: right;"><el-avatar :size="30" src="https://www.xiesiyu.top/upload/2021/04/1000-340286eb49d94ffc98449972f7bb7b84-ea2bc3481be2429f93df0a11424b4632.jpg"></el-avatar></el-menu-item>
         <el-menu-item index="/home"><span  class="span_font"><i class="el-icon-menu"></i>首页</span></el-menu-item>
-        <el-menu-item index="/article"><span  class="span_font">消息中心</span></el-menu-item>
+        <el-menu-item index="/message"><span  class="span_font">消息中心</span></el-menu-item>
         <el-menu-item index="/about"><span  class="span_font">About</span></el-menu-item>
         <el-menu-item style="float: right;">
 

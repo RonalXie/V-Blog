@@ -35,4 +35,9 @@ public interface ArticleMapper {
     int deleteArtType(int id);
 
     int articleSum();
+    List<Article> selectRecent();
+
+    List<Article> queryTop();
+
+    void updateTop(Article article);
 }

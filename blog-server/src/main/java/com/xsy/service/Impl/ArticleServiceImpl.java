@@ -133,5 +133,20 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.articleSum();
     }
 
+    @Override
+    public List<Article> selectRecent() {
+        return articleMapper.selectRecent();
+    }
+
+    @Override
+    public List<Article> queryTop() {
+        return articleMapper.queryTop();
+    }
+
+    @Override
+    public void updateTop(Article article) {
+        articleMapper.updateTop(article);
+    }
+
 
 }

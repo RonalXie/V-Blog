@@ -5,4 +5,5 @@ import com.xsy.domain.User;
 public interface UserService {
     public User getUser(int id);
 
+    User login(User user);
 }

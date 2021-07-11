@@ -3,6 +3,8 @@ package com.xsy.mapper;
 import com.xsy.domain.Comment;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 
 @Mapper
 public interface CommentMapper {
@@ -24,4 +26,5 @@ public interface CommentMapper {
     int updateByPrimaryKeyWithBLOBs(Comment record);
 
     int updateByPrimaryKey(Comment record);
+    List<Comment> getComment();
 }

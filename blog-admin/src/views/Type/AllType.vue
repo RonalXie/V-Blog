@@ -86,7 +86,7 @@ export default {
     },
     handleDelete(index, row) {
       this.editcontent.tid=row.tid
-      postRequest("/addType",this.form).then(response=>(location.reload()));
+      postRequest("/deleteType", {'tid':row.tid}).then(response=>(location.reload()));
     },
     onSubmit(){
       postRequest("/addType",this.form).then(response=>(location.reload()));

@@ -1,5 +1,6 @@
 package com.xsy.mapper;
 
+import com.xsy.domain.Article;
 import com.xsy.domain.Type;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -30,4 +31,6 @@ public interface TypeMapper {
     int typeSum();
 
     int deleteArtType(int tid);
+
+    List<Article> queryByType(int tid);
 }

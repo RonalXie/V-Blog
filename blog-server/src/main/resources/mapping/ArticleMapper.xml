@@ -18,7 +18,7 @@
   </resultMap>
   <sql id="Base_Column_List">
 
-    id, title, abs, img, create_date, u_id, looknum
+    id, title, abs, img, create_date, u_id, looknum,istop
   </sql>
   <sql id="Blob_Column_List">
 
@@ -190,6 +190,23 @@
   <select id="articleSum" resultType="int">
     select count(*) from article
   </select>
+
+  <select id="selectRecent" resultType="com.xsy.domain.Article">
+
+    select * from article order by id desc limit 0,10
+  </select>
+
+  <select id="queryTop" resultType="com.xsy.domain.Article">
+    select id,title,abs,content,create_date as createDate,img,looknum,istop from article where istop like "1" order by id desc
+
+  </select>
+
+
+  <update id="updateTop" parameterType="com.xsy.domain.Article">
+
+    update article set istop=#{istop} where id=#{id}
+  </update>
+
 
 
 
