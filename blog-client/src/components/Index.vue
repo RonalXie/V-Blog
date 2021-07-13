@@ -6,17 +6,20 @@
     <div class="main"><router-view></router-view></div>
     <div class="footer"></div>
 <!--    <Audio></Audio>-->
+    <Player></Player>
   </div>
 </template>
 
 <script>
 import Header from "./nav/Header";
 import Audio from "./Audio";
+import Player from "./Player";
 export default {
   name: "Index",
   components:{
     Header,
-    Audio
+    Audio,
+    Player,
   }
 }
 </script>

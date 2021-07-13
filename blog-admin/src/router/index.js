@@ -7,9 +7,8 @@ import allComment from "../views/Comment/allComment";
 import EditArticle from "../views/Article/EditArticle";
 import AllType from "../views/Type/AllType";
 import Login from "../views/Login";
-import Music from "../views/Others/Music";
-import Swiper from "../views/Others/Swiper";
 import User from "../views/Others/User";
+import Index from "../views/Index"
 
 
 Vue.use(Router)
@@ -27,7 +26,16 @@ export default new Router({
       path: '/home',
       name: '文章管理',
       component: Home,
+      redirect:'/index',
       children:[
+        {
+          path: '/index',
+          name: '首页',
+          component: Index,
+          hidden: true
+
+        },
+
         {
           path: '/allArticle',
           name: '全部文章',
@@ -83,17 +91,7 @@ export default new Router({
           path: '/user',
           name: '个人信息',
           component: User,
-        },
-        {
-          path: '/music',
-          name: '音乐',
-          component: Music,
-        },
-        {
-          path: '/swiper',
-          name: '轮播图',
-          component: Swiper,
-        },
+        }
 
       ]
     },
