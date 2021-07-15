@@ -7,7 +7,6 @@ import com.qiniu.http.Response;
 import com.qiniu.storage.Configuration;
 import com.qiniu.storage.Region;
 import com.qiniu.storage.UploadManager;
-import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
 import com.xsy.domain.Article;
 import com.xsy.domain.Page;
@@ -17,7 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -81,6 +85,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public String addArticle(Article article) {
+        if (article.getAbs()==null){
+            article.setAbs(article.getContent().substring(0,400));
+        }
         articleMapper.insert(article);
         int aid=article.getId();
         int typeId[]=article.getType();
@@ -146,6 +153,52 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void updateTop(Article article) {
         articleMapper.updateTop(article);
+    }
+
+    @Override
+    public void uploadMD(MultipartFile file) throws IOException {
+        String name=file.getOriginalFilename();
+        InputStream inputStream = file.getInputStream();
+        BufferedReader br=new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder stringBuilder=new StringBuilder();
+        while(br.ready()) {
+            String line = br.readLine();
+            stringBuilder.append(line+"\n");
+        }
+        String content=stringBuilder.toString();
+        String abs=null;
+        if (content.length()<400){
+            abs=content;
+        }
+        else{
+            abs=content.substring(0,400);
+        }
+
+        String title=name;
+        String date=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+
+        Article article=new Article();
+        article.setTitle(title);
+        article.setAbs(abs);
+        article.setContent(content);
+        article.setCreateDate(date);
+        article.setLooknum(0);
+
+        articleMapper.insert(article);
+
+
+    }
+
+    public PageInfo<Article> search(Page page, String key) {
+
+
+        pageHelper.startPage(page.getPageNum(),page.getPageSize(),"id desc");
+        List<Article> list=articleMapper.selectBylike(key);
+        PageInfo<Article> article=new PageInfo<>(list);
+
+
+
+        return article;
     }
 
 

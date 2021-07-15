@@ -12,7 +12,7 @@
           <span style="display: inline-block;float: right"><i class="el-icon-view"></i>&nbsp;{{item.looknum}}</span>
           <h1 style="overflow: hidden;text-overflow: ellipsis;　　white-space: nowrap;">{{item.title}}</h1>
           <span style="font-size: 15px;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 5;">
-            {{item.abs}}阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多阅读更多
+            {{item.abs}}
           </span><br>
           <el-button type="success" plain @click="goArticle(item)">阅读更多</el-button>
         </div>

@@ -6,6 +6,7 @@ import Article from "../views/Article";
 import About from "../views/About";
 import QueryByType from "../views/QueryByType";
 import Message from "../views/Message";
+import ShowSearch from "../views/ShowSearch";
 
 Vue.use(Router)
 
@@ -43,6 +44,12 @@ export default new Router({
           path:"/message",
           name:"Message",
           component:Message,
+
+        },
+        {
+          path:"/showsearch/:key",
+          name:"ShowSearch",
+          component:ShowSearch,
 
         }
 

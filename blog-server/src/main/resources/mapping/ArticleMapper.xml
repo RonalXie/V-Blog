@@ -208,6 +208,9 @@
   </update>
 
 
+  <select id="selectBylike"  resultType="com.xsy.domain.Article">
 
+    SELECT id,title,abs,content,img,create_date as createDate,looknum from article  WHERE content like concat('%',#{key},'%') OR title like concat('%',#{key},'%')
+  </select>
 
 </mapper>

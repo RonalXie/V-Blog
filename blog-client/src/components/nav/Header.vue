@@ -10,12 +10,13 @@
 
           <el-input
             placeholder="请输入内容"
-            prefix-icon="el-icon-search"
-            v-model="form.id"
+            v-model="form.key"
             size="small"
-
           >
+            <i slot="prefix" class="el-input__icon el-icon-search" @click="search"></i>
           </el-input>
+
+
 
         </el-menu-item>
       </el-menu>
@@ -34,19 +35,27 @@ export default {
       activeIndex: '1',
       activeIndex2: '1',
       form: {
-        id:'1'
+        key:''
 
       }
     };
   },
   methods: {
+    search(){
+      this.$router.push("/showsearch/"+this.form.key)
+
+
+
+
+    },
+
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
 
     getuser() {
       postRequest("http://localhost:8888/user", this.form).then(function (response) {
-
+          new URLSearchParams()
           console.log(response.data)
         },
       )

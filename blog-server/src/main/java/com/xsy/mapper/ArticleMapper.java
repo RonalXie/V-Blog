@@ -40,4 +40,6 @@ public interface ArticleMapper {
     List<Article> queryTop();
 
     void updateTop(Article article);
+
+    List<Article> selectBylike(String key);
 }

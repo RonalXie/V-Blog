@@ -6,7 +6,7 @@ import com.xsy.domain.Article;
 import com.xsy.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.InputStream;
+import java.io.IOException;
 import java.util.List;
 
 public interface ArticleService {
@@ -30,4 +30,8 @@ public interface ArticleService {
     public List<Article> queryTop();
 
     void updateTop(Article article);
+
+    void uploadMD(MultipartFile file) throws IOException;
+
+    public PageInfo<Article> search(Page page, String key);
 }
