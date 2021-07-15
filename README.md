@@ -39,10 +39,10 @@
 
 ## 主页
 
-![](C:\Users\XieSiYu\Desktop\java\V-Blog\img\home.png)
+[![WuK2y6.png](https://z3.ax1x.com/2021/07/15/WuK2y6.png)](https://imgtu.com/i/WuK2y6)
 
 ## 管理界面
 
-![](C:\Users\XieSiYu\Desktop\java\V-Blog\img\admin.png)
+[![WuKgQx.png](https://z3.ax1x.com/2021/07/15/WuKgQx.png)](https://imgtu.com/i/WuKgQx)
 
 持续更新中。。。。。。
